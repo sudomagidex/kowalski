@@ -1,0 +1,11 @@
+{
+  "name": "kowalski",
+  "version": "1.0.0",
+  "description": "Uma automação para WhatsApp que envia e recebe mensagens dos mais variados modos.   Com interface web e API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
