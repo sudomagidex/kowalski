@@ -1,11 +1,72 @@
 {
   "name": "kowalski",
   "version": "1.0.0",
-  "description": "Uma automação para WhatsApp que envia e recebe mensagens dos mais variados modos.   Com interface web e API.",
-  "main": "index.js",
+  "description": "Uma automação para WhatsApp que envia e recebe mensagens dos mais variados modos. Com interface web e API.",
+  "type": "module",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc && tsc-alias",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "prepare": "husky"
   },
+  "keywords": [
+    "whatsapp",
+    "baileys",
+    "automation",
+    "bot",
+    "api"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.9",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pino": "^9.0.0",
+    "pino-pretty": "^11.0.0",
+    "qrcode-terminal": "^0.12.0",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.7",
+    "@types/qrcode-terminal": "^0.12.2",
+    "@types/supertest": "^6.0.2",
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-boundaries": "^4.2.2",
+    "eslint-plugin-import": "^2.29.1",
+    "husky": "^9.0.11",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.1.2",
+    "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.16",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.4.5"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
 }

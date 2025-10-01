@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  kowalski:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kowalski-bot
+    ports:
+      - '${PORT:-3000}:3000'
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - PORT=${PORT:-3000}
+      - API_KEY=${API_KEY}
+      - SESSION_DIR=/app/sessions
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+    volumes:
+      - ./sessions:/app/sessions
+    restart: unless-stopped
+    networks:
+      - kowalski-network
+
+  # Redis for future session storage
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: kowalski-redis
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis-data:/data
+  #   restart: unless-stopped
+  #   networks:
+  #     - kowalski-network
+
+networks:
+  kowalski-network:
+    driver: bridge
+# volumes:
+#   redis-data:
